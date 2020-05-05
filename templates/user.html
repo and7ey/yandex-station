@@ -1,0 +1,237 @@
+<!DOCTYPE html>
+<html lang="en"><head>
+<meta http-equiv="content-type" content="text/html; charset=UTF-8">
+    <meta charset="utf-8">
+    <title>Мои сценарии &middot; Настройки</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="title" content="Мои сценарии - навык для Алисы от Яндекса, позволящий задавать несколько команд в одном сценарии">
+    <meta name="keywords" content="алиса, яндекс, навык, сценарий, команда, несколько, alisa, yandex, skill, scenario">
+    <meta name="description" content="Навык для создания сценариев Алисы, состоящих из нескольких команд (например, по запросу 'Алиса, доброе утро', можно настроить ответ, содержащий прогноз погоды, время в пути на работу и включить музыку)">
+    <meta name="author" content="ye7dna">
+    <!-- Le styles -->
+    <link href="css/bootstrap.css" rel="stylesheet">
+    <style type="text/css">
+      body {
+        padding-top: 20px;
+        padding-bottom: 40px;
+      }
+
+      /* Custom container */
+      .container-narrow {
+        margin: 0 auto;
+        max-width: 700px;
+      }
+      .container-narrow > hr {
+        margin: 30px 0;
+      }
+
+      /* Main marketing message and sign up button */
+      .jumbotron {
+        margin: 60px 0;
+        text-align: center;
+      }
+      .jumbotron h1 {
+        font-size: 48px;
+        line-height: 1;
+      }
+      .jumbotron .btn {
+        font-size: 21px;
+        padding: 14px 24px;
+      }
+
+      /* Supporting marketing content */
+      .marketing {
+        margin: 30px 0;
+      }
+      .marketing p + h4 {
+        margin-top: 28px;
+      }
+    </style>
+    <link href="css/bootstrap-responsive.css" rel="stylesheet">
+
+    <!-- HTML5 shim, for IE6-8 support of HTML5 elements -->
+    <!--[if lt IE 9]>
+      <script src="js/html5shiv.js"></script>
+    <![endif]-->
+
+    <!-- Fav and touch icons -->
+    <link rel="apple-touch-icon-precomposed" sizes="144x144" href="http://twitter.github.io/bootstrap/assets/ico/apple-touch-icon-144-precomposed.png">
+    <link rel="apple-touch-icon-precomposed" sizes="114x114" href="http://twitter.github.io/bootstrap/assets/ico/apple-touch-icon-114-precomposed.png">
+    <link rel="apple-touch-icon-precomposed" sizes="72x72" href="http://twitter.github.io/bootstrap/assets/ico/apple-touch-icon-72-precomposed.png">
+    <link rel="apple-touch-icon-precomposed" href="http://twitter.github.io/bootstrap/assets/ico/apple-touch-icon-57-precomposed.png">
+    <link rel="shortcut icon" href="ico/favicon.ico">
+    <script type="text/javascript">
+      var _gaq = _gaq || [];
+      _gaq.push(['_setAccount', 'UA-43713576-1']);
+      _gaq.push(['_setDomainName', 'rosspam.org']);
+      _gaq.push(['_trackPageview']);
+      (function() {
+        var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+        ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+        var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+      })();
+    </script>
+  </head>
+
+  <body>
+
+    <div class="container-narrow">
+
+      <div class="masthead">
+        <ul class="nav nav-pills pull-right">
+          <li><a href="{{ url }}">Выйти</a></li>
+          <!--
+          <li><a href="register">Регистрация</a></li>
+          <li><a href="login">Войти</a></li>
+          -->
+        </ul>
+        <h3 class="muted">Мои сценарии</h3>
+
+      </div>
+
+      <hr>
+
+
+      <div class="row-fluid marketing">
+        <div class="span12">
+          <h4>Настройки {{ user }}</h4>
+          <p>&nbsp;</p>
+          <form method="POST" action="#" id="dataform" name="dataform" accept-charset="UTF-8">
+            <div class="form-group">
+              <label for="yandex_token">Яндекс Токен</label>
+              <input autocomplete="off" type="text" value="{% if yandex_token %}{{ yandex_token }}{% endif %}" id="yandex_token" class="form-control span12" name="yandex_token" placeholder="укажите токен">
+              <small id="yandex_token_help" class="form-text text-muted">Чтобы получить токен, пройдите по <a href="https://oauth.yandex.ru/authorize?response_type=token&client_id=23cabbbdc6cd418abb4b39c32c41195d&client_secret=53bc75238f0c4d08a118e51fe9203300" target="_blank">ссылке</a> (ссылка открывается в новой вкладке). Сайт покажет сообщение - "Авторизация в приложении Яндекс.Музыка не удалась. Возможные причины: Приложение не установлено" - это нормально. Скопируйте получившийся адрес (URL) из адресной строки браузера и вставьте выше. Можно скопировать как строку целиком, так и только значение между <i>#access_token=</i> и <i>&token_type</i>.</small>
+              <p></p>
+              <p>&nbsp;</p>
+            </div>
+            <div class="form-group">
+              <label for="device_token">Токен Яндекс.Станции</label>
+              <textarea rows="3" type="text" id="device_token" class="form-control span12" name="device_token" placeholder="укажите токен">{% if device_token %}{{ device_token }}{% endif %}</textarea>
+
+              <small id="device_token_help" class="form-text text-muted">Токен станции можно указать как вручную, так и получить его автоматически, указав Яндекс Токен выше.</small>
+              <div><button type="button" id="get_device_token" name="get_device_token" class="btn btn-info btn-block span2">Получить</button></div>
+              <p>&nbsp;</p>
+              <p>&nbsp;</p>
+            </div>
+            <div class="form-group">
+              <label for="device_address">Внешний адрес станции</label>
+              <input autocomplete="off" type="text" value="{% if device_address %}{{ device_address }}{% endif %}" id="device_address" class="form-control span12" name="device_address" placeholder="user.ddns.net:1961">
+              <small id="device_address_help" class="form-text text-muted">Укажите URL или IP-адрес вашего роутера, доступный из вне. Указывать протокол (<i>http://</i>, <i>https://</i>, <i>wss://</i> и т.п.) - не требуется. Обратите внимание: на роутере необходимо осуществить проброс портов, чтобы станция стала доступна для приема команд из интернета (см. подробнее, например, <a href="https://club.dns-shop.ru/blog/22654-Probros-portov-i-nastroika-routera-dlya-vneshnego-dostupa/" target="_blank">тут</a>). По умолчанию используется порт 1961. Если вы настроили в роутере другой порт, то укажите его в данном поле напрямую, например, <i>:12345</i>. Обратите также внимание: IP-адреса вида 192.168.xxx.xxx вряд ли являются вашими внешними IP-адресами. Проверьте свой адрес, например, на <a href="https://ip.yandex.ru" target="_blank">ip.yandex.ru</a>.</small>
+              <p></p>
+              <p>&nbsp;</p>
+            </div>
+            <div class="form-group">
+              <div><button type="button" id="test_connection" name="test_connection" class="btn btn-info btn-block span12">Проверить настройки</button></div>
+              <small id="test_connection_help" class="form-text text-muted">Если все хорошо, то ваша Яндекс.Станция произнесет определенный текст.</small>
+              <p></p>
+              <p>&nbsp;</p>
+              <p>&nbsp;</p>
+              <p>&nbsp;</p>
+            </div>
+
+            <p>Ниже настраиваются сценарии. Сценарии можно вызывать командой "Алиса, попроси Мои сценарии запустить Сценарий 1", но это неудобно. Чтобы сделать применение сценариев более удобным, перейдите по <a href="https://quasar.yandex.ru/skills/iot" target="_blank">ссылке</a>, выберите Сценарии, нажмите + (плюс), Добавить сценарий, Выберите событие Фраза и введите фразу, например, "Доброе утро". Затем нажмите + Устройство и выберите Яндекс.Станцию, там укажите "попроси Мои сценарии запустить Сценарий 1".
+            </p>
+            <p>Сейчас Яндекс.Станция не всегда отдает статус - когда она перестала говорить, потому после каждой команды можно вручную задать паузу (в секундах) - через символ ^. Например, "<i>погода^5</i>".</p>
+            <div class="form-group">
+              <label for="case1">Сценарий 1</label>
+              <input type="text" value="{% if case1step1 %}{{ case1step1 }}{% endif %}" id="case1step1" class="form-control span12" name="case1step1" placeholder="повтори за мной доброе утро">
+              <input type="text" value="{% if case1step2 %}{{ case1step2 }}{% endif %}" id="case1step2" class="form-control span12" name="case1step2" placeholder="погода">
+              <input type="text" value="{% if case1step3 %}{{ case1step3 }}{% endif %}" id="case1step3" class="form-control span12" name="case1step3" placeholder="включи музыку">
+              <p></p>
+              <p>&nbsp;</p>
+            </div>
+
+            <div class="form-group">
+              <label for="case2">Сценарий 2</label>
+              <input type="text" value="{% if case2step1 %}{{ case2step1 }}{% endif %}" id="case2step1" class="form-control span12" name="case2step1" placeholder="повтори за мной доброе утро">
+              <input type="text" value="{% if case2step2 %}{{ case2step2 }}{% endif %}" id="case2step2" class="form-control span12" name="case2step2" placeholder="погода">
+              <input type="text" value="{% if case2step3 %}{{ case2step3 }}{% endif %}" id="case2step3" class="form-control span12" name="case2step3" placeholder="включи музыку">
+              <p></p>
+              <p>&nbsp;</p>
+            </div>
+
+
+            <button  id="login" name="login" class="btn btn-info btn-block">Сохранить</button>
+          </form>
+        </div>
+      </div>
+
+      <hr>
+
+      <div class="footer">
+        <p></p>
+      </div>
+
+    </div> <!-- /container -->
+
+    <!-- Le javascript
+    ================================================== -->
+    <!-- Placed at the end of the document so the pages load faster -->
+    <script src="js/jquery.js"></script>
+    <script src="js/bootstrap-transition.js"></script>
+    <script src="js/bootstrap-alert.js"></script>
+    <script src="js/bootstrap-modal.js"></script>
+    <script src="js/bootstrap-dropdown.js"></script>
+    <script src="js/bootstrap-scrollspy.js"></script>
+    <script src="js/bootstrap-tab.js"></script>
+    <script src="js/bootstrap-tooltip.js"></script>
+    <script src="js/bootstrap-popover.js"></script>
+    <script src="js/bootstrap-button.js"></script>
+    <script src="js/bootstrap-collapse.js"></script>
+    <script src="js/bootstrap-carousel.js"></script>
+    <script src="js/bootstrap-typeahead.js"></script>
+    <script>
+      !function ($) {
+        $(function(){
+        })
+      }(window.jQuery)
+    </script>
+
+    <script type="text/javascript">
+      $(document).ready(function(){
+
+
+        $('#yandex_token').bind('input', function() {
+          if ($(this).val().indexOf('access_token') !== -1) {
+            var token = /access_token=([^&]+)/.exec($(this).val())[1];
+            $(this).val(token);
+          }
+        });
+
+        $("#get_device_token").click(function() {
+          $.ajax({
+            'url' : '/device-token',
+            'type' : 'GET',
+            'data': {
+              'Yandex-Token': $('#yandex_token').val()
+            },
+            'success': function(data) {
+              //if (data == "success") {
+                $('#device_token').val(data);
+              //}
+            }
+          });
+        });
+
+        $("#test_connection").click(function() {
+          $.ajax({
+            'url' : '/test-connection',
+            'type' : 'GET',
+            'data': {
+              'Device-Token': $('#device_token').val(),
+              'Device-Address': $('#device_address').val(),
+            },
+            'success': function(data) {
+              alert(data);
+            }
+          });
+        });
+
+        // $("#dataform").submit(function(e) {
+        //     e.preventDefault();
+        // });
+
+      });
+    </script>
+  </body>
+</html>

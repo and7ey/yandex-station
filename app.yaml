@@ -1,0 +1,38 @@
+application: yandex-station
+version: 1
+runtime: python27
+api_version: 1
+threadsafe: yes
+
+handlers:
+- url: /favicon\.ico
+  static_files: templates/ico/favicon.ico
+  upload: templates/ico/favicon\.ico
+
+- url: /img/
+  static_dir: templates/img
+
+- url: /ico/
+  static_dir: templates/ico
+
+- url: /css/
+  static_dir: templates/css
+
+- url: /js/
+  static_dir: templates/js
+
+- url: .*
+  script: yandex-station.app
+
+libraries:
+- name: flask
+  version: "0.12"
+
+# - name: webapp2
+#   version: "2.5.2"
+
+# - name: django
+#   version: "1.11"
+
+- name: ssl
+  version: latest
